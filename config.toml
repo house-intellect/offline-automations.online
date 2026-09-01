@@ -1,84 +1,70 @@
-#baseURL = "https://house-intellect.github.io/automated-load-management-system/"
-baseURL = "https://offline-smarthome-scenarios.pro"
-# The "title" of your website
-url = "https://offline-smarthome-scenarios.pro"
+baseURL = "https://offline-automations.online/"
+url = "https://offline-automations.online/"
 
-title = "Система Адаптивного Управления Нагрузкой"
-author = "house-intellect"
+title = "ДокСинтез — Локальная гибридная система автоматизации финансового контроля"
+author = "ДокСинтез"
 languageCode = "ru"
 DefaultContentLanguage = "ru"
 enableInlineShortcodes = true
 theme = "tella"
 enableRobotsTXT = true
 canonifyURLs = true
-relativeURLs = false  # Disable relative URLs
-image = "img/alms.webp"
-# Please enable this feature if the site is available in Japanese, Chinese or Korean.
-#hasCJKLanguage = true
-
-# If you're using Google Analytics, you can enable this feature.
-#googleAnalytics = "G-YMDXXMEB0E"
-
-# Disqus Comment System
-#disqusShortname = ""
+relativeURLs = false
+image = "img/banner.webp"
 
 [params]
   favicon = "favicon.ico"
   showBlog = true
   mainSections = ['blog']
-  copyright = "house-intellect"
+  copyright = "ДокСинтез"
   googleFonts = true
 
   [params.logo]
     main = "img/logo/logo.png"
-    alt = "Защита от перегрузки за счет пошагового автоматического отключения второстепенных потребителей"
-
-    # The size parameter is the class name of tailwindcss
-    # https://tailwindcss.com/
+    alt = "ДокСинтез — Локальная гибридная система автоматизации документооборота и финансового контроля"
     size = "h-14"
 
   [params.site]
-    name = "Система Адаптивного Управления Нагрузкой"
+    name = "ДокСинтез"
 
   [params.icon]
-    #If you want to use FontAwesome, set this parameter to true.
     fontawesome = true
 
   [params.homepage_meta_tags]
-    meta_description = "Отключение второстепенных нагрузок при превышении заданного порога мощности с настраиваемыми приоритетами"
-    meta_og_description = "Защита от перегрузки за счет пошагового автоматического отключения второстепенных потребителей"
+    meta_description = "ДокСинтез — локальная гибридная система сопоставления первичных документов (УПД, акты) и договоров/заказов (PO) на базе локальных LLM и детерминированного аудита без передачи данных в облако."
+    meta_og_description = "Автоматизация финансового контроля и сверки первичных документов. Тандем локальной языковой модели и математического аудита в защищенном контуре предприятия."
     meta_og_type = "website"
-    meta_og_url = "https://offline-smarthome-scenarios.pro"
-    meta_og_image = "img/alms.webp"
+    meta_og_url = "https://offline-automations.online/"
+    meta_og_image = "img/banner.webp"
     meta_twitter_card = "summary_large_image"
-    meta_twitter_site = "@username"
-    meta_twitter_creator = "@username"
-    meta_og_title = "Система Адаптивного Управления Нагрузкой"
-    keywords = "Автоматическое отключение при перегрузке, САУН, Система Адаптивного Управления Нагрузкой, Управление энергопотреблением, Оптимизация энергопотребления, Энергоэффективность, Энергосбережение, Мониторинг энергопотребления, Контроль энергопотребления, Автоматизация управления нагрузкой, Управление пиковой нагрузкой, Снижение пиковой мощности, Решения для энергоэффективности, Энергетический менеджмент, Системы управления энергопотреблением, Программное обеспечение для управления энергопотреблением, ABB DMTME-I-485, Sonoff, Ewelink, IoT, Промышленная автоматизация, Телеметрия, Виртуальные порты, .Net Framework, WPF, C#"
+    meta_twitter_site = "@doksintez"
+    meta_twitter_creator = "@doksintez"
+    meta_og_title = "ДокСинтез — Автоматизация обработки документов и финансового контроля"
+    keywords = "ДокСинтез, автоматизация бухгалтерии, сверка УПД, локальная LLM, финансовый контроль, сопоставление первичных документов, распознавание УПД, математическая верификация PO, семантический маппинг, защита коммерческой тайны, обработка PDF, Ollama"
 
 [menu]
 
   [[menu.main]]
     identifier = "products"
-    name = "Проекты"
+    name = "Возможности"
     url = "/products/"
     weight = 1
 
   [[menu.main]]
     identifier = "blog"
-    name = "Новости"
+    name = "База знаний"
     url = "/blog/"
     weight = 2
 
   [[menu.main]]
     identifier = "about"
-    name = "О нас"
+    name = "О системе"
     url = "/about/"
     weight = 3
 
   [[menu.main]]
     identifier = "contact"
-    name = "Контакты"
+    name = "Внедрение и контакты"
     url = "/contact/"
     weight = 4
 
@@ -86,10 +72,19 @@ image = "img/alms.webp"
   [[menu.footer]]
     name = "Главная"
     url = "/"
-      weight = 1
+    weight = 1
 
   [[menu.footer]]
-    name = "Github"
-    url = "https://github.com/house-intellect"
-    pre = "<i class='icon-github text-2xl'></i>"
-      weight = 2
+    name = "Возможности"
+    url = "/products/"
+    weight = 2
+
+  [[menu.footer]]
+    name = "О системе"
+    url = "/about/"
+    weight = 3
+
+  [[menu.footer]]
+    name = "Контакты"
+    url = "/contact/"
+    weight = 4

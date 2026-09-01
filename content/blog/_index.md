@@ -1,6 +1,4 @@
-+++
-aliases = ["posts", "articles", "blog", "showcase", "docs"]
-title = "Новости"
-author = "house-intellect"
-tags = ["index"]
-+++
+---
+title: "База знаний и статьи"
+description: "Материалы по гибридной автоматизации, локальным LLM и оптимизации финансового бэк-офиса"
+---

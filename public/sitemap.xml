@@ -1,145 +1,63 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9"
-  xmlns:xhtml="https://www.w3.org/1999/xhtml">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://offline-smarthome-scenarios.pro/products/energy_management_app/</loc>
-    <lastmod>2021-10-05T12:33:45+10:00</lastmod>
+    <loc>https://offline-automations.online/products/hybrid-verification/</loc>
+    <lastmod>2026-08-01T10:00:00+03:00</lastmod>
   </url><url>
-    <loc>https://offline-smarthome-scenarios.pro/</loc>
-    <lastmod>2024-12-26T00:00:00+00:00</lastmod>
+    <loc>https://offline-automations.online/products/semantic-mapping/</loc>
+    <lastmod>2026-08-02T10:00:00+03:00</lastmod>
   </url><url>
-    <loc>https://offline-smarthome-scenarios.pro/categories/</loc>
-    <lastmod>2024-12-26T00:00:00+00:00</lastmod>
+    <loc>https://offline-automations.online/products/local-security/</loc>
+    <lastmod>2026-08-03T10:00:00+03:00</lastmod>
   </url><url>
-    <loc>https://offline-smarthome-scenarios.pro/tags/index/</loc>
-    <lastmod>2024-12-26T00:00:00+00:00</lastmod>
+    <loc>https://offline-automations.online/</loc>
+    <lastmod>2026-08-06T12:00:00+03:00</lastmod>
   </url><url>
-    <loc>https://offline-smarthome-scenarios.pro/tags/</loc>
-    <lastmod>2024-12-26T00:00:00+00:00</lastmod>
+    <loc>https://offline-automations.online/categories/</loc>
+    <lastmod>2026-08-06T12:00:00+03:00</lastmod>
   </url><url>
-    <loc>https://offline-smarthome-scenarios.pro/tags/%D0%B0%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F/</loc>
-    <lastmod>2024-12-26T00:00:00+00:00</lastmod>
+    <loc>https://offline-automations.online/blog/</loc>
+    <lastmod>2026-08-06T12:00:00+03:00</lastmod>
   </url><url>
-    <loc>https://offline-smarthome-scenarios.pro/blog/automatic-power-corridor-correction/</loc>
-    <lastmod>2024-12-26T00:00:00+00:00</lastmod>
+    <loc>https://offline-automations.online/categories/%D0%B8%D0%B8/</loc>
+    <lastmod>2026-08-06T12:00:00+03:00</lastmod>
   </url><url>
-    <loc>https://offline-smarthome-scenarios.pro/blog/</loc>
-    <lastmod>2024-12-26T00:00:00+00:00</lastmod>
+    <loc>https://offline-automations.online/categories/%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%B0%D1%8F-%D0%B1%D0%B5%D0%B7%D0%BE%D0%BF%D0%B0%D1%81%D0%BD%D0%BE%D1%81%D1%82%D1%8C/</loc>
+    <lastmod>2026-08-06T12:00:00+03:00</lastmod>
   </url><url>
-    <loc>https://offline-smarthome-scenarios.pro/tags/%D0%BF%D1%80%D0%BE%D0%BC%D1%8B%D1%88%D0%BB%D0%B5%D0%BD%D0%BD%D0%B0%D1%8F-%D0%B0%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F/</loc>
-    <lastmod>2024-12-26T00:00:00+00:00</lastmod>
+    <loc>https://offline-automations.online/blog/local-llm-architecture-for-enterprise/</loc>
+    <lastmod>2026-08-06T12:00:00+03:00</lastmod>
   </url><url>
-    <loc>https://offline-smarthome-scenarios.pro/categories/%D1%82%D0%B5%D1%85%D0%BD%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D0%B8/</loc>
-    <lastmod>2024-12-26T00:00:00+00:00</lastmod>
+    <loc>https://offline-automations.online/blog/daily-fresh-report-vs-monthly-rush/</loc>
+    <lastmod>2026-08-05T12:00:00+03:00</lastmod>
   </url><url>
-    <loc>https://offline-smarthome-scenarios.pro/tags/%D1%83%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D0%BC%D0%BE%D1%89%D0%BD%D0%BE%D1%81%D1%82%D1%8C%D1%8E/</loc>
-    <lastmod>2024-12-26T00:00:00+00:00</lastmod>
+    <loc>https://offline-automations.online/categories/%D0%BA%D0%B5%D0%B9%D1%81%D1%8B/</loc>
+    <lastmod>2026-08-05T12:00:00+03:00</lastmod>
   </url><url>
-    <loc>https://offline-smarthome-scenarios.pro/tags/%D1%83%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D1%8D%D0%BD%D0%B5%D1%80%D0%B3%D0%BE%D0%BF%D0%BE%D1%82%D1%80%D0%B5%D0%B1%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%D0%BC/</loc>
-    <lastmod>2024-12-26T00:00:00+00:00</lastmod>
+    <loc>https://offline-automations.online/categories/%D1%84%D0%B8%D0%BD%D0%B0%D0%BD%D1%81%D0%BE%D0%B2%D1%8B%D0%B9-%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D1%8C/</loc>
+    <lastmod>2026-08-05T12:00:00+03:00</lastmod>
   </url><url>
-    <loc>https://offline-smarthome-scenarios.pro/tags/%D1%8D%D0%BD%D0%B5%D1%80%D0%B3%D0%BE%D1%81%D0%B1%D0%B5%D1%80%D0%B5%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5/</loc>
-    <lastmod>2024-12-26T00:00:00+00:00</lastmod>
+    <loc>https://offline-automations.online/categories/%D0%B0%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F/</loc>
+    <lastmod>2026-08-04T12:00:00+03:00</lastmod>
   </url><url>
-    <loc>https://offline-smarthome-scenarios.pro/categories/%D1%8D%D0%BD%D0%B5%D1%80%D0%B3%D0%BE%D1%81%D0%B1%D0%B5%D1%80%D0%B5%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F/</loc>
-    <lastmod>2024-12-26T00:00:00+00:00</lastmod>
+    <loc>https://offline-automations.online/categories/%D0%B0%D1%80%D1%85%D0%B8%D1%82%D0%B5%D0%BA%D1%82%D1%83%D1%80%D0%B0/</loc>
+    <lastmod>2026-08-04T12:00:00+03:00</lastmod>
   </url><url>
-    <loc>https://offline-smarthome-scenarios.pro/tags/abb/</loc>
-    <lastmod>2024-10-05T00:00:00+00:00</lastmod>
+    <loc>https://offline-automations.online/blog/semantic-chaos-in-accounting/</loc>
+    <lastmod>2026-08-04T12:00:00+03:00</lastmod>
   </url><url>
-    <loc>https://offline-smarthome-scenarios.pro/categories/abb/</loc>
-    <lastmod>2024-10-05T00:00:00+00:00</lastmod>
+    <loc>https://offline-automations.online/categories/%D1%84%D0%B8%D0%BD%D0%B0%D0%BD%D1%81%D1%8B/</loc>
+    <lastmod>2026-08-04T12:00:00+03:00</lastmod>
   </url><url>
-    <loc>https://offline-smarthome-scenarios.pro/tags/%D0%B0%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B5-%D0%BE%D1%82%D0%BA%D0%BB%D1%8E%D1%87%D0%B5%D0%BD%D0%B8%D0%B5-%D0%BF%D1%80%D0%B8-%D0%BF%D0%B5%D1%80%D0%B5%D0%B3%D1%80%D1%83%D0%B7%D0%BA%D0%B5/</loc>
-    <lastmod>2024-10-05T00:00:00+00:00</lastmod>
+    <loc>https://offline-automations.online/products/</loc>
+    <lastmod>2026-08-03T10:00:00+03:00</lastmod>
   </url><url>
-    <loc>https://offline-smarthome-scenarios.pro/blog/abb/</loc>
-    <lastmod>2024-10-05T00:00:00+00:00</lastmod>
+    <loc>https://offline-automations.online/about/</loc>
+    <lastmod>2026-08-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://offline-smarthome-scenarios.pro/tags/%D1%82%D0%B5%D0%BB%D0%B5%D0%BC%D0%B5%D1%82%D1%80%D0%B8%D1%8F/</loc>
-    <lastmod>2024-10-05T00:00:00+00:00</lastmod>
+    <loc>https://offline-automations.online/tags/</loc>
   </url><url>
-    <loc>https://offline-smarthome-scenarios.pro/categories/%D1%82%D0%B5%D0%BB%D0%B5%D0%BC%D0%B5%D1%82%D1%80%D0%B8%D1%8F/</loc>
-    <lastmod>2024-10-05T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://offline-smarthome-scenarios.pro/blog/automatic-power-factor-correction/</loc>
-    <lastmod>2024-10-02T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://offline-smarthome-scenarios.pro/tags/%D0%BA%D0%BE%D1%8D%D1%84%D1%84%D0%B8%D1%86%D0%B8%D0%B5%D0%BD%D1%82-%D0%BC%D0%BE%D1%89%D0%BD%D0%BE%D1%81%D1%82%D0%B8/</loc>
-    <lastmod>2024-10-02T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://offline-smarthome-scenarios.pro/tags/ewelink/</loc>
-    <lastmod>2023-11-05T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://offline-smarthome-scenarios.pro/tags/iot/</loc>
-    <lastmod>2023-11-05T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://offline-smarthome-scenarios.pro/tags/sonoff/</loc>
-    <lastmod>2023-11-05T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://offline-smarthome-scenarios.pro/categories/%D0%B0%D1%81%D1%83-%D1%82%D0%BF/</loc>
-    <lastmod>2023-11-05T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://offline-smarthome-scenarios.pro/tags/%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%BD%D0%B5%D1%82-%D0%B2%D0%B5%D1%89%D0%B5%D0%B9/</loc>
-    <lastmod>2023-11-05T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://offline-smarthome-scenarios.pro/categories/%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%BD%D0%B5%D1%82-%D0%B2%D0%B5%D1%89%D0%B5%D0%B9/</loc>
-    <lastmod>2023-11-05T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://offline-smarthome-scenarios.pro/tags/%D0%BA%D0%BE%D0%BC%D0%BC%D1%83%D1%82%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D1%8B%D0%B5-%D1%83%D1%81%D1%82%D1%80%D0%BE%D0%B9%D1%81%D1%82%D0%B2%D0%B0/</loc>
-    <lastmod>2023-11-05T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://offline-smarthome-scenarios.pro/blog/sonoff-ewelink/</loc>
-    <lastmod>2023-11-05T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://offline-smarthome-scenarios.pro/categories/%D0%BF%D1%80%D0%BE%D0%BC%D1%8B%D1%88%D0%BB%D0%B5%D0%BD%D0%BD%D0%B0%D1%8F-%D0%B0%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F/</loc>
-    <lastmod>2023-11-05T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://offline-smarthome-scenarios.pro/tags/%D1%83%D0%BC%D0%BD%D1%8B%D0%B9-%D0%B4%D0%BE%D0%BC/</loc>
-    <lastmod>2023-11-05T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://offline-smarthome-scenarios.pro/categories/%D1%83%D0%BC%D0%BD%D1%8B%D0%B9-%D0%B4%D0%BE%D0%BC/</loc>
-    <lastmod>2023-11-05T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://offline-smarthome-scenarios.pro/blog/iot-relays/</loc>
-    <lastmod>2023-10-05T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://offline-smarthome-scenarios.pro/products/</loc>
-    <lastmod>2021-10-05T12:33:45+10:00</lastmod>
-  </url><url>
-    <loc>https://offline-smarthome-scenarios.pro/tags/windows/</loc>
-    <lastmod>2020-10-05T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://offline-smarthome-scenarios.pro/categories/%D0%B0%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D0%B7%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5/</loc>
-    <lastmod>2020-10-05T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://offline-smarthome-scenarios.pro/tags/%D0%B2%D0%B8%D1%80%D1%82%D1%83%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B5-%D0%BF%D0%BE%D1%80%D1%82%D1%8B/</loc>
-    <lastmod>2020-10-05T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://offline-smarthome-scenarios.pro/categories/%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85/</loc>
-    <lastmod>2020-10-05T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://offline-smarthome-scenarios.pro/tags/%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D1%84%D0%B5%D0%B9%D1%81%D1%8B-%D1%81%D0%B2%D1%8F%D0%B7%D0%B8/</loc>
-    <lastmod>2020-10-05T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://offline-smarthome-scenarios.pro/about/</loc>
-    <lastmod>2020-10-05T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://offline-smarthome-scenarios.pro/tags/%D0%BF%D0%BE%D0%B4%D0%B4%D0%B5%D1%80%D0%B6%D0%BA%D0%B0/</loc>
-    <lastmod>2020-10-05T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://offline-smarthome-scenarios.pro/blog/windows-support/</loc>
-    <lastmod>2020-10-05T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://offline-smarthome-scenarios.pro/categories/%D0%BF%D1%80%D0%BE%D0%BC%D1%8B%D1%88%D0%BB%D0%B5%D0%BD%D0%BD%D1%8B%D0%B5/</loc>
-    <lastmod>2020-10-05T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://offline-smarthome-scenarios.pro/categories/%D1%81%D0%B1%D0%BE%D1%80%D0%B0/</loc>
-    <lastmod>2020-10-05T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://offline-smarthome-scenarios.pro/categories/%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%8B/</loc>
-    <lastmod>2020-10-05T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://offline-smarthome-scenarios.pro/contact/</loc>
+    <loc>https://offline-automations.online/contact/</loc>
   </url>
 </urlset>
