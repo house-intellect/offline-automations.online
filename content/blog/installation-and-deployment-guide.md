@@ -8,53 +8,66 @@ categories: ["Развертывание", "Инструкции", "Автома
 description: "Пошаговая инструкция по настройке Ollama, импорту GGUF моделей (GLM-OCR, BigBang), виртуального окружения Python и планировщика задач (cron / Task Scheduler) на Windows и Linux."
 ---
 
-Система **«ДокСинтез»** полностью автономна и не требует подключения к внешним облачным сервисам. В этой статье приведена подробная инструкция по локальному развертыванию конвейера на операционных системах **Linux** и **Windows**, включая установку локального нейросетевого сервера Ollama, импорт специализированных GGUF-моделей с Hugging Face, настройку Python-окружения и запуск ночного регламентного аудита.
+Система **«ДокСинтез»** полностью автономна и не требует подключения к внешним облачным сервисам. В этой статье приведено подробное руководство по локальному развертыванию конвейера на операционных системах **Linux** и **Windows**, включая установку локального нейросетевого сервера Ollama, загрузку и импорт специализированных GGUF-моделей с Hugging Face, настройку изолированного Python-окружения и запуск ночного регламентного аудита по расписанию.
 
 ---
 
-## 1. Установка и подготовка локального сервера Ollama
+## 1. Установка и запуск локального сервера Ollama
 
-Локальный сервер Ollama отвечает за локальное исполнение нейросетевых моделей без выхода в сеть.
+Локальный сервер Ollama отвечает за аппаратное исполнение нейросетевых моделей на процессоре (с поддержкой AVX2) или графическом ускорителе (NVIDIA / Apple Silicon).
 
 ### На Linux:
 ```bash
-# Установка Ollama в одну команду
+# Установка Ollama официальным скриптом
 curl -fsSL https://ollama.com/install.sh | sh
 
-# Проверка статуса сервиса
+# Проверка статуса службы
 systemctl status ollama
 ```
 
 ### На Windows:
-1. Скачайте официальный инсталлятор с сайта [ollama.com/download/windows](https://ollama.com/download/windows).
-2. Запустите `.exe` установщик и завершите установку.
-3. Ollama запустится в фоновом режиме (иконка появится в системном трее) и будет доступна по адресу `http://127.0.0.1:11434`.
+1. Скачайте инсталлятор с официального сайта [ollama.com/download/windows](https://ollama.com/download/windows).
+2. Запустите инсталлятор и завершите установку.
+3. Ollama автоматически запустится в системном трее и будет слушать локальный порт `http://127.0.0.1:11434`.
 
 ---
 
 ## 2. Загрузка моделей с Hugging Face и создание Modelfile
 
-Для работы конвейера используются две модели:
-1. **GLM-OCR**: Модель высокоточного оптического распознавания текста, штампов и сложных таблиц ([Hugging Face: ggml-org/GLM-OCR-GGUF](https://huggingface.co/ggml-org/GLM-OCR-GGUF)).
-2. **BigBang-v1**: Модель семантического анализа, сопоставления номенклатуры и классификации статей ([Hugging Face: mradermacher/BigBang-v1-GGUF](https://huggingface.co/mradermacher/BigBang-v1-GGUF)).
+Для работы гибридного конвейера используются две квантованные модели:
+1. **GLM-OCR**: Модель оптического распознавания текста и извлечения сложных табличных структур ([Hugging Face: ggml-org/GLM-OCR-GGUF](https://huggingface.co/ggml-org/GLM-OCR-GGUF)).
+2. **BigBang-v1**: Модель семантического анализа, сопоставления номенклатуры и финансовой классификации ([Hugging Face: mradermacher/BigBang-v1-GGUF](https://huggingface.co/mradermacher/BigBang-v1-GGUF)).
 
-### 2.1. Загрузка GGUF-файлов
+### 2.1. Загрузка весов GGUF
 
-Создайте рабочую директорию для моделей и скачайте необходимые квантованные веса:
+Создайте каталог для хранения моделей и загрузите необходимые файлы:
 
+#### Linux:
 ```bash
 mkdir -p ~/models && cd ~/models
 
-# Загрузка GLM-OCR GGUF
+# Загрузка весов GLM-OCR
 wget https://huggingface.co/ggml-org/GLM-OCR-GGUF/resolve/main/glm-ocr-q4_k_m.gguf
 
-# Загрузка BigBang-v1 GGUF
+# Загрузка весов BigBang-v1
 wget https://huggingface.co/mradermacher/BigBang-v1-GGUF/resolve/main/BigBang-v1.Q4_K_M.gguf
 ```
 
-### 2.2. Импорт моделей в Ollama через Modelfile
+#### Windows (PowerShell):
+```powershell
+New-Item -ItemType Directory -Force -Path C:\Models
+Set-Location C:\Models
 
-Создайте файл манифеста `Modelfile_bigbang`:
+# Загрузка GLM-OCR
+Invoke-WebRequest -Uri "https://huggingface.co/ggml-org/GLM-OCR-GGUF/resolve/main/glm-ocr-q4_k_m.gguf" -OutFile "glm-ocr-q4_k_m.gguf"
+
+# Загрузка BigBang-v1
+Invoke-WebRequest -Uri "https://huggingface.co/mradermacher/BigBang-v1-GGUF/resolve/main/BigBang-v1.Q4_K_M.gguf" -OutFile "BigBang-v1.Q4_K_M.gguf"
+```
+
+### 2.2. Создание Modelfile и регистрация моделей в Ollama
+
+Создайте файл `Modelfile_bigbang`:
 
 ```dockerfile
 FROM ./BigBang-v1.Q4_K_M.gguf
@@ -64,13 +77,12 @@ PARAMETER num_ctx 8192
 SYSTEM """Вы — строгий финансовый аудитор и эксперт по сопоставлению первичных бухгалтерских документов."""
 ```
 
-Импортируйте модель в реестр Ollama:
-
+Импортируйте модель семантического сопоставления:
 ```bash
 ollama create bigbang:v1 -f Modelfile_bigbang
 ```
 
-Аналогично импортируйте модель распознавания:
+Создайте файл `Modelfile_glm_ocr`:
 
 ```dockerfile
 FROM ./glm-ocr-q4_k_m.gguf
@@ -78,11 +90,12 @@ PARAMETER temperature 0.0
 PARAMETER num_ctx 4096
 ```
 
+Импортируйте модель оптического распознавания:
 ```bash
 ollama create glm-ocr:v1 -f Modelfile_glm_ocr
 ```
 
-Проверьте наличие созданных моделей:
+Проверьте корректность регистрации моделей:
 ```bash
 ollama list
 ```
@@ -91,98 +104,122 @@ ollama list
 
 ## 3. Настройка окружения Python и установка зависимостей
 
-Конвейер требует Python версии 3.10 или выше.
+Для работы скрипта требуется Python версии 3.10 или выше.
 
-### Linux / macOS:
+### Linux:
 ```bash
-# Переход в директорию проекта
-cd /home/grapeonwheels/Documents/CBRE
+# Переход в рабочий каталог проекта
+cd /opt/doksintez
 
-# Создание виртуального окружения
+# Создание изолированного виртуального окружения
 python3 -m venv .venv
 
 # Активация окружения
 source .venv/bin/activate
 
-# Обновление pip и установка библиотек
+# Установка библиотек
 pip install --upgrade pip
 pip install pdfplumber openpyxl pandas requests pillow tabulate
 ```
 
 ### Windows (PowerShell):
 ```powershell
-cd C:\CBRE\DokSintez
+# Переход в рабочий каталог проекта
+Set-Location C:\DokSintez
+
+# Создание виртуального окружения
 python -m venv .venv
+
+# Активация окружения
 .\.venv\Scripts\Activate.ps1
+
+# Установка библиотек
 pip install --upgrade pip
 pip install pdfplumber openpyxl pandas requests pillow tabulate
 ```
 
 ---
 
-## 4. Запуск скрипта DokSintez.py
+## 4. Запуск конвейера DokSintez.py
 
-Скрипт поддерживает как запуск со стандартными параметрами (по умолчанию используются локальный хост Ollama `http://127.0.0.1:11434` и модель `bigbang:v1`), так и запуск с кастомными аргументами командной строки:
+Скрипт готов к работе как с параметрами по умолчанию, так и с настраиваемыми аргументами командной строки:
 
+### Запуск на Linux:
 ```bash
-# Базовый запуск в виртуальном окружении:
-python3 /home/grapeonwheels/Documents/CBRE/DokSintez.py
+# Базовый запуск:
+/opt/doksintez/.venv/bin/python3 /opt/doksintez/DokSintez.py
 
-# Запуск с указанием конкретной модели и пути к данным:
-python3 /home/grapeonwheels/Documents/CBRE/DokSintez.py \
+# Запуск с указанием кастомных каталогов и модели:
+/opt/doksintez/.venv/bin/python3 /opt/doksintez/DokSintez.py \
   --model "bigbang:v1" \
   --ollama_url "http://127.0.0.1:11434" \
-  --data_dir "/home/grapeonwheels/Documents/CBRE/june" \
-  --reference "/home/grapeonwheels/Documents/CBRE/Шаблон отчета по подрядчикам.xlsx"
+  --data_dir "/opt/doksintez/incoming_docs" \
+  --reference "/opt/doksintez/Шаблон_отчета_по_подрядчикам.xlsx"
 ```
 
-### Исполняемый bash-скрипт для ручного запуска (`run_doksintez.sh`):
-
+### Исполняемый bash-скрипт (`run_doksintez.sh`):
 ```bash
 #!/bin/bash
-source /home/grapeonwheels/Documents/CBRE/.venv/bin/activate
-python3 /home/grapeonwheels/Documents/CBRE/DokSintez.py
+source /opt/doksintez/.venv/bin/activate
+python3 /opt/doksintez/DokSintez.py
 read -n 1 -s -r -p "Нажмите любую клавишу для продолжения..."
+```
+
+### Запуск на Windows (PowerShell / CMD):
+```powershell
+# Базовый запуск:
+C:\DokSintez\.venv\Scripts\python.exe C:\DokSintez\DokSintez.py
+
+# Запуск с кастомными аргументами:
+C:\DokSintez\.venv\Scripts\python.exe C:\DokSintez\DokSintez.py --model "bigbang:v1" --ollama_url "http://127.0.0.1:11434" --data_dir "C:\DokSintez\incoming_docs" --reference "C:\DokSintez\Шаблон_отчета_по_подрядчикам.xlsx"
+```
+
+### Исполняемый батник для Windows (`run_doksintez.bat`):
+```cmd
+@echo off
+cd /d C:\DokSintez
+call .venv\Scripts\activate.bat
+python DokSintez.py
+pause
 ```
 
 ---
 
 ## 5. Настройка ночного автоматического расписания (Nightly Runs)
 
-Для реализации концепции **«Свежий отчет к завтраку»** обработка входящей первички запускается автоматически каждую ночь.
+Для реализации концепции **«Свежий отчет к завтраку»** обработка поступивших за день документов выполняется автоматически каждую ночь.
 
-### 5.1. Настройка через `cron` в Linux
+### 5.1. Настройка на Linux через `cron`
 
-Откройте редактор расписания текущего пользователя:
+Откройте планировщик текущего пользователя:
 ```bash
 crontab -e
 ```
 
-Добавьте задачу на запуск каждую ночь в 03:00:
+Добавьте задание на запуск каждую ночь в 03:00:
 ```cron
 # Запуск конвейера ДокСинтез каждую ночь в 03:00
-0 3 * * * /home/grapeonwheels/Documents/CBRE/.venv/bin/python3 /home/grapeonwheels/Documents/CBRE/DokSintez.py >> /home/grapeonwheels/Documents/CBRE/cron_execution.log 2>&1
+0 3 * * * /opt/doksintez/.venv/bin/python3 /opt/doksintez/DokSintez.py >> /opt/doksintez/cron_execution.log 2>&1
 ```
 
-### 5.2. Однократный отложенный запуск через `at` (Linux)
-Если требуется запланировать разовый запуск на ближайшую ночь:
+### 5.2. Разовый отложенный запуск на Linux через `at`
 ```bash
-echo "/home/grapeonwheels/Documents/CBRE/.venv/bin/python3 /home/grapeonwheels/Documents/CBRE/DokSintez.py" | at 03:30 tomorrow
+echo "/opt/doksintez/.venv/bin/python3 /opt/doksintez/DokSintez.py" | at 03:30 tomorrow
 ```
 
-### 5.3. Настройка в Windows через Планировщик заданий (Task Scheduler)
+### 5.3. Настройка на Windows через Планировщик заданий (Task Scheduler)
 
-Создайте файл `nightly_run.bat`:
+Создайте файл `nightly_audit.bat`:
 ```cmd
 @echo off
-cd /d C:\CBRE\DokSintez
+cd /d C:\DokSintez
 call .venv\Scripts\activate.bat
 python DokSintez.py >> execution_nightly.log 2>&1
 ```
 
-1. Нажмите `Win + R`, введите `taskschd.msc` и нажмите Enter.
-2. В правом меню выберите **Создать простую задачу...** (Create Basic Task).
-3. Укажите имя: `ДокСинтез - Ночной аудит первички`.
-4. Триггер: **Ежедневно**, время: `03:00:00`.
-5. Действие: **Запустить программу** -> укажите путь к `C:\CBRE\DokSintez\nightly_run.bat`.
-6. Готово! Теперь каждое утро к началу рабочего дня руководство и бухгалтерия получают готовый свежий отчет в формате Excel.
+1. Нажмите сочетание клавиш `Win + R`, введите `taskschd.msc` и нажмите Enter.
+2. В правой панели выберите **Создать простую задачу...** (Create Basic Task).
+3. Задайте имя: `ДокСинтез - Ночной аудит первички`.
+4. В качестве триггера укажите: **Ежедневно** в `03:00:00`.
+5. Действие: **Запустить программу** -> выберите `C:\DokSintez\nightly_audit.bat`.
+6. Сохраните задачу. Каждое утро к началу рабочего дня руководство и финансовый отдел получают актуальный верифицированный отчет в формате Excel.

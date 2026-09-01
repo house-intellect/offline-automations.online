@@ -194,118 +194,148 @@
         
         <img class="my-4" src="https://offline-automations.online/img/blog/installation-guide.webp">
         
-        <div class="content prose md:prose-lg lg:prose-xl max-w-none py-1"><p>Система <strong>«ДокСинтез»</strong> полностью автономна и не требует подключения к внешним облачным сервисам. В этой статье приведена подробная инструкция по локальному развертыванию конвейера на операционных системах <strong>Linux</strong> и <strong>Windows</strong>, включая установку локального нейросетевого сервера Ollama, импорт специализированных GGUF-моделей с Hugging Face, настройку Python-окружения и запуск ночного регламентного аудита.</p>
+        <div class="content prose md:prose-lg lg:prose-xl max-w-none py-1"><p>Система <strong>«ДокСинтез»</strong> полностью автономна и не требует подключения к внешним облачным сервисам. В этой статье приведено подробное руководство по локальному развертыванию конвейера на операционных системах <strong>Linux</strong> и <strong>Windows</strong>, включая установку локального нейросетевого сервера Ollama, загрузку и импорт специализированных GGUF-моделей с Hugging Face, настройку изолированного Python-окружения и запуск ночного регламентного аудита по расписанию.</p>
 <hr>
-<h2 id="1-установка-и-подготовка-локального-сервера-ollama">1. Установка и подготовка локального сервера Ollama</h2>
-<p>Локальный сервер Ollama отвечает за локальное исполнение нейросетевых моделей без выхода в сеть.</p>
+<h2 id="1-установка-и-запуск-локального-сервера-ollama">1. Установка и запуск локального сервера Ollama</h2>
+<p>Локальный сервер Ollama отвечает за аппаратное исполнение нейросетевых моделей на процессоре (с поддержкой AVX2) или графическом ускорителе (NVIDIA / Apple Silicon).</p>
 <h3 id="на-linux">На Linux:</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Установка Ollama в одну команду</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Установка Ollama официальным скриптом</span>
 </span></span><span style="display:flex;"><span>curl -fsSL https://ollama.com/install.sh | sh
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Проверка статуса сервиса</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Проверка статуса службы</span>
 </span></span><span style="display:flex;"><span>systemctl status ollama
 </span></span></code></pre></div><h3 id="на-windows">На Windows:</h3>
 <ol>
-<li>Скачайте официальный инсталлятор с сайта <a href="https://ollama.com/download/windows">ollama.com/download/windows</a>.</li>
-<li>Запустите <code>.exe</code> установщик и завершите установку.</li>
-<li>Ollama запустится в фоновом режиме (иконка появится в системном трее) и будет доступна по адресу <code>http://127.0.0.1:11434</code>.</li>
+<li>Скачайте инсталлятор с официального сайта <a href="https://ollama.com/download/windows">ollama.com/download/windows</a>.</li>
+<li>Запустите инсталлятор и завершите установку.</li>
+<li>Ollama автоматически запустится в системном трее и будет слушать локальный порт <code>http://127.0.0.1:11434</code>.</li>
 </ol>
 <hr>
 <h2 id="2-загрузка-моделей-с-hugging-face-и-создание-modelfile">2. Загрузка моделей с Hugging Face и создание Modelfile</h2>
-<p>Для работы конвейера используются две модели:</p>
+<p>Для работы гибридного конвейера используются две квантованные модели:</p>
 <ol>
-<li><strong>GLM-OCR</strong>: Модель высокоточного оптического распознавания текста, штампов и сложных таблиц (<a href="https://huggingface.co/ggml-org/GLM-OCR-GGUF">Hugging Face: ggml-org/GLM-OCR-GGUF</a>).</li>
-<li><strong>BigBang-v1</strong>: Модель семантического анализа, сопоставления номенклатуры и классификации статей (<a href="https://huggingface.co/mradermacher/BigBang-v1-GGUF">Hugging Face: mradermacher/BigBang-v1-GGUF</a>).</li>
+<li><strong>GLM-OCR</strong>: Модель оптического распознавания текста и извлечения сложных табличных структур (<a href="https://huggingface.co/ggml-org/GLM-OCR-GGUF">Hugging Face: ggml-org/GLM-OCR-GGUF</a>).</li>
+<li><strong>BigBang-v1</strong>: Модель семантического анализа, сопоставления номенклатуры и финансовой классификации (<a href="https://huggingface.co/mradermacher/BigBang-v1-GGUF">Hugging Face: mradermacher/BigBang-v1-GGUF</a>).</li>
 </ol>
-<h3 id="21-загрузка-gguf-файлов">2.1. Загрузка GGUF-файлов</h3>
-<p>Создайте рабочую директорию для моделей и скачайте необходимые квантованные веса:</p>
+<h3 id="21-загрузка-весов-gguf">2.1. Загрузка весов GGUF</h3>
+<p>Создайте каталог для хранения моделей и загрузите необходимые файлы:</p>
+<h4 id="linux">Linux:</h4>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mkdir -p ~/models <span style="color:#f92672">&amp;&amp;</span> cd ~/models
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Загрузка GLM-OCR GGUF</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Загрузка весов GLM-OCR</span>
 </span></span><span style="display:flex;"><span>wget https://huggingface.co/ggml-org/GLM-OCR-GGUF/resolve/main/glm-ocr-q4_k_m.gguf
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Загрузка BigBang-v1 GGUF</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Загрузка весов BigBang-v1</span>
 </span></span><span style="display:flex;"><span>wget https://huggingface.co/mradermacher/BigBang-v1-GGUF/resolve/main/BigBang-v1.Q4_K_M.gguf
-</span></span></code></pre></div><h3 id="22-импорт-моделей-в-ollama-через-modelfile">2.2. Импорт моделей в Ollama через Modelfile</h3>
-<p>Создайте файл манифеста <code>Modelfile_bigbang</code>:</p>
+</span></span></code></pre></div><h4 id="windows-powershell">Windows (PowerShell):</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>New-Item -ItemType Directory -Force -Path C:\Models
+</span></span><span style="display:flex;"><span>Set-Location C:\Models
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Загрузка GLM-OCR</span>
+</span></span><span style="display:flex;"><span>Invoke-WebRequest -Uri <span style="color:#e6db74">&#34;https://huggingface.co/ggml-org/GLM-OCR-GGUF/resolve/main/glm-ocr-q4_k_m.gguf&#34;</span> -OutFile <span style="color:#e6db74">&#34;glm-ocr-q4_k_m.gguf&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Загрузка BigBang-v1</span>
+</span></span><span style="display:flex;"><span>Invoke-WebRequest -Uri <span style="color:#e6db74">&#34;https://huggingface.co/mradermacher/BigBang-v1-GGUF/resolve/main/BigBang-v1.Q4_K_M.gguf&#34;</span> -OutFile <span style="color:#e6db74">&#34;BigBang-v1.Q4_K_M.gguf&#34;</span>
+</span></span></code></pre></div><h3 id="22-создание-modelfile-и-регистрация-моделей-в-ollama">2.2. Создание Modelfile и регистрация моделей в Ollama</h3>
+<p>Создайте файл <code>Modelfile_bigbang</code>:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> ./BigBang-v1.Q4_K_M.gguf</span><span style="color:#960050;background-color:#1e0010">
 </span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>PARAMETER temperature 0.1<span style="color:#960050;background-color:#1e0010">
 </span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>PARAMETER top_p 0.9<span style="color:#960050;background-color:#1e0010">
 </span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>PARAMETER num_ctx <span style="color:#ae81ff">8192</span><span style="color:#960050;background-color:#1e0010">
 </span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>SYSTEM <span style="color:#e6db74">&#34;&#34;&#34;Вы — строгий финансовый аудитор и эксперт по сопоставлению первичных бухгалтерских документов.&#34;&#34;&#34;</span><span style="color:#960050;background-color:#1e0010">
-</span></span></span></code></pre></div><p>Импортируйте модель в реестр Ollama:</p>
+</span></span></span></code></pre></div><p>Импортируйте модель семантического сопоставления:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ollama create bigbang:v1 -f Modelfile_bigbang
-</span></span></code></pre></div><p>Аналогично импортируйте модель распознавания:</p>
+</span></span></code></pre></div><p>Создайте файл <code>Modelfile_glm_ocr</code>:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> ./glm-ocr-q4_k_m.gguf</span><span style="color:#960050;background-color:#1e0010">
 </span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>PARAMETER temperature 0.0<span style="color:#960050;background-color:#1e0010">
 </span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>PARAMETER num_ctx <span style="color:#ae81ff">4096</span><span style="color:#960050;background-color:#1e0010">
-</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ollama create glm-ocr:v1 -f Modelfile_glm_ocr
-</span></span></code></pre></div><p>Проверьте наличие созданных моделей:</p>
+</span></span></span></code></pre></div><p>Импортируйте модель оптического распознавания:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ollama create glm-ocr:v1 -f Modelfile_glm_ocr
+</span></span></code></pre></div><p>Проверьте корректность регистрации моделей:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ollama list
 </span></span></code></pre></div><hr>
 <h2 id="3-настройка-окружения-python-и-установка-зависимостей">3. Настройка окружения Python и установка зависимостей</h2>
-<p>Конвейер требует Python версии 3.10 или выше.</p>
-<h3 id="linux--macos">Linux / macOS:</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Переход в директорию проекта</span>
-</span></span><span style="display:flex;"><span>cd /home/grapeonwheels/Documents/CBRE
+<p>Для работы скрипта требуется Python версии 3.10 или выше.</p>
+<h3 id="linux-1">Linux:</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Переход в рабочий каталог проекта</span>
+</span></span><span style="display:flex;"><span>cd /opt/doksintez
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Создание виртуального окружения</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Создание изолированного виртуального окружения</span>
 </span></span><span style="display:flex;"><span>python3 -m venv .venv
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># Активация окружения</span>
 </span></span><span style="display:flex;"><span>source .venv/bin/activate
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Обновление pip и установка библиотек</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Установка библиотек</span>
 </span></span><span style="display:flex;"><span>pip install --upgrade pip
 </span></span><span style="display:flex;"><span>pip install pdfplumber openpyxl pandas requests pillow tabulate
-</span></span></code></pre></div><h3 id="windows-powershell">Windows (PowerShell):</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>cd C:\CBRE\DokSintez
+</span></span></code></pre></div><h3 id="windows-powershell-1">Windows (PowerShell):</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># Переход в рабочий каталог проекта</span>
+</span></span><span style="display:flex;"><span>Set-Location C:\DokSintez
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Создание виртуального окружения</span>
 </span></span><span style="display:flex;"><span>python -m venv .venv
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Активация окружения</span>
 </span></span><span style="display:flex;"><span>.\.venv\Scripts\Activate.ps1
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Установка библиотек</span>
 </span></span><span style="display:flex;"><span>pip install --upgrade pip
 </span></span><span style="display:flex;"><span>pip install pdfplumber openpyxl pandas requests pillow tabulate
 </span></span></code></pre></div><hr>
-<h2 id="4-запуск-скрипта-doksintezpy">4. Запуск скрипта DokSintez.py</h2>
-<p>Скрипт поддерживает как запуск со стандартными параметрами (по умолчанию используются локальный хост Ollama <code>http://127.0.0.1:11434</code> и модель <code>bigbang:v1</code>), так и запуск с кастомными аргументами командной строки:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Базовый запуск в виртуальном окружении:</span>
-</span></span><span style="display:flex;"><span>python3 /home/grapeonwheels/Documents/CBRE/DokSintez.py
+<h2 id="4-запуск-конвейера-doksintezpy">4. Запуск конвейера DokSintez.py</h2>
+<p>Скрипт готов к работе как с параметрами по умолчанию, так и с настраиваемыми аргументами командной строки:</p>
+<h3 id="запуск-на-linux">Запуск на Linux:</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Базовый запуск:</span>
+</span></span><span style="display:flex;"><span>/opt/doksintez/.venv/bin/python3 /opt/doksintez/DokSintez.py
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Запуск с указанием конкретной модели и пути к данным:</span>
-</span></span><span style="display:flex;"><span>python3 /home/grapeonwheels/Documents/CBRE/DokSintez.py <span style="color:#ae81ff">\
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Запуск с указанием кастомных каталогов и модели:</span>
+</span></span><span style="display:flex;"><span>/opt/doksintez/.venv/bin/python3 /opt/doksintez/DokSintez.py <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --model <span style="color:#e6db74">&#34;bigbang:v1&#34;</span> <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --ollama_url <span style="color:#e6db74">&#34;http://127.0.0.1:11434&#34;</span> <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --data_dir <span style="color:#e6db74">&#34;/home/grapeonwheels/Documents/CBRE/june&#34;</span> <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --reference <span style="color:#e6db74">&#34;/home/grapeonwheels/Documents/CBRE/Шаблон отчета по подрядчикам.xlsx&#34;</span>
-</span></span></code></pre></div><h3 id="исполняемый-bash-скрипт-для-ручного-запуска-run_doksintezsh">Исполняемый bash-скрипт для ручного запуска (<code>run_doksintez.sh</code>):</h3>
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --data_dir <span style="color:#e6db74">&#34;/opt/doksintez/incoming_docs&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --reference <span style="color:#e6db74">&#34;/opt/doksintez/Шаблон_отчета_по_подрядчикам.xlsx&#34;</span>
+</span></span></code></pre></div><h3 id="исполняемый-bash-скрипт-run_doksintezsh">Исполняемый bash-скрипт (<code>run_doksintez.sh</code>):</h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>source /home/grapeonwheels/Documents/CBRE/.venv/bin/activate
-</span></span><span style="display:flex;"><span>python3 /home/grapeonwheels/Documents/CBRE/DokSintez.py
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>source /opt/doksintez/.venv/bin/activate
+</span></span><span style="display:flex;"><span>python3 /opt/doksintez/DokSintez.py
 </span></span><span style="display:flex;"><span>read -n <span style="color:#ae81ff">1</span> -s -r -p <span style="color:#e6db74">&#34;Нажмите любую клавишу для продолжения...&#34;</span>
+</span></span></code></pre></div><h3 id="запуск-на-windows-powershell--cmd">Запуск на Windows (PowerShell / CMD):</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># Базовый запуск:</span>
+</span></span><span style="display:flex;"><span>C:\DokSintez\.venv\Scripts\python.exe C:\DokSintez\DokSintez.py
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Запуск с кастомными аргументами:</span>
+</span></span><span style="display:flex;"><span>C:\DokSintez\.venv\Scripts\python.exe C:\DokSintez\DokSintez.py --model <span style="color:#e6db74">&#34;bigbang:v1&#34;</span> --ollama_url <span style="color:#e6db74">&#34;http://127.0.0.1:11434&#34;</span> --data_dir <span style="color:#e6db74">&#34;C:\DokSintez\incoming_docs&#34;</span> --reference <span style="color:#e6db74">&#34;C:\DokSintez\Шаблон_отчета_по_подрядчикам.xlsx&#34;</span>
+</span></span></code></pre></div><h3 id="исполняемый-батник-для-windows-run_doksintezbat">Исполняемый батник для Windows (<code>run_doksintez.bat</code>):</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cmd" data-lang="cmd"><span style="display:flex;"><span>@<span style="color:#66d9ef">echo</span> off
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">cd</span> /d C:\DokSintez
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">call</span> .venv\Scripts\activate.bat
+</span></span><span style="display:flex;"><span>python DokSintez.py
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">pause</span>
 </span></span></code></pre></div><hr>
 <h2 id="5-настройка-ночного-автоматического-расписания-nightly-runs">5. Настройка ночного автоматического расписания (Nightly Runs)</h2>
-<p>Для реализации концепции <strong>«Свежий отчет к завтраку»</strong> обработка входящей первички запускается автоматически каждую ночь.</p>
-<h3 id="51-настройка-через-cron-в-linux">5.1. Настройка через <code>cron</code> в Linux</h3>
-<p>Откройте редактор расписания текущего пользователя:</p>
+<p>Для реализации концепции <strong>«Свежий отчет к завтраку»</strong> обработка поступивших за день документов выполняется автоматически каждую ночь.</p>
+<h3 id="51-настройка-на-linux-через-cron">5.1. Настройка на Linux через <code>cron</code></h3>
+<p>Откройте планировщик текущего пользователя:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>crontab -e
-</span></span></code></pre></div><p>Добавьте задачу на запуск каждую ночь в 03:00:</p>
+</span></span></code></pre></div><p>Добавьте задание на запуск каждую ночь в 03:00:</p>
 <pre tabindex="0"><code class="language-cron" data-lang="cron"># Запуск конвейера ДокСинтез каждую ночь в 03:00
-0 3 * * * /home/grapeonwheels/Documents/CBRE/.venv/bin/python3 /home/grapeonwheels/Documents/CBRE/DokSintez.py &gt;&gt; /home/grapeonwheels/Documents/CBRE/cron_execution.log 2&gt;&amp;1
-</code></pre><h3 id="52-однократный-отложенный-запуск-через-at-linux">5.2. Однократный отложенный запуск через <code>at</code> (Linux)</h3>
-<p>Если требуется запланировать разовый запуск на ближайшую ночь:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;/home/grapeonwheels/Documents/CBRE/.venv/bin/python3 /home/grapeonwheels/Documents/CBRE/DokSintez.py&#34;</span> | at 03:30 tomorrow
-</span></span></code></pre></div><h3 id="53-настройка-в-windows-через-планировщик-заданий-task-scheduler">5.3. Настройка в Windows через Планировщик заданий (Task Scheduler)</h3>
-<p>Создайте файл <code>nightly_run.bat</code>:</p>
+0 3 * * * /opt/doksintez/.venv/bin/python3 /opt/doksintez/DokSintez.py &gt;&gt; /opt/doksintez/cron_execution.log 2&gt;&amp;1
+</code></pre><h3 id="52-разовый-отложенный-запуск-на-linux-через-at">5.2. Разовый отложенный запуск на Linux через <code>at</code></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;/opt/doksintez/.venv/bin/python3 /opt/doksintez/DokSintez.py&#34;</span> | at 03:30 tomorrow
+</span></span></code></pre></div><h3 id="53-настройка-на-windows-через-планировщик-заданий-task-scheduler">5.3. Настройка на Windows через Планировщик заданий (Task Scheduler)</h3>
+<p>Создайте файл <code>nightly_audit.bat</code>:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cmd" data-lang="cmd"><span style="display:flex;"><span>@<span style="color:#66d9ef">echo</span> off
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">cd</span> /d C:\CBRE\DokSintez
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">cd</span> /d C:\DokSintez
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">call</span> .venv\Scripts\activate.bat
 </span></span><span style="display:flex;"><span>python DokSintez.py &gt;&gt; execution_nightly.log <span style="color:#ae81ff">2</span>&gt;&amp;<span style="color:#ae81ff">1</span>
 </span></span></code></pre></div><ol>
-<li>Нажмите <code>Win + R</code>, введите <code>taskschd.msc</code> и нажмите Enter.</li>
-<li>В правом меню выберите <strong>Создать простую задачу&hellip;</strong> (Create Basic Task).</li>
-<li>Укажите имя: <code>ДокСинтез - Ночной аудит первички</code>.</li>
-<li>Триггер: <strong>Ежедневно</strong>, время: <code>03:00:00</code>.</li>
-<li>Действие: <strong>Запустить программу</strong> -&gt; укажите путь к <code>C:\CBRE\DokSintez\nightly_run.bat</code>.</li>
-<li>Готово! Теперь каждое утро к началу рабочего дня руководство и бухгалтерия получают готовый свежий отчет в формате Excel.</li>
+<li>Нажмите сочетание клавиш <code>Win + R</code>, введите <code>taskschd.msc</code> и нажмите Enter.</li>
+<li>В правой панели выберите <strong>Создать простую задачу&hellip;</strong> (Create Basic Task).</li>
+<li>Задайте имя: <code>ДокСинтез - Ночной аудит первички</code>.</li>
+<li>В качестве триггера укажите: <strong>Ежедневно</strong> в <code>03:00:00</code>.</li>
+<li>Действие: <strong>Запустить программу</strong> -&gt; выберите <code>C:\DokSintez\nightly_audit.bat</code>.</li>
+<li>Сохраните задачу. Каждое утро к началу рабочего дня руководство и финансовый отдел получают актуальный верифицированный отчет в формате Excel.</li>
 </ol>
 </div>
         <div class="share m-2 grid grid-cols-2 lg:grid-cols-3 gap-2">

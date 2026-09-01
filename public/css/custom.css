@@ -1,4 +1,62 @@
 /* 
- This CSS file is used to override the existing styles of the theme.
- You can change the article headings, fonts, colors, etc.
+ Custom styles for DokSintez
+ Override swiper carousel to scale images responsively without cropping
 */
+
+.swiper-container {
+    width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+}
+
+.swiper-wrapper {
+    height: auto !important;
+    align-items: center !important;
+}
+
+.swiper-slide {
+    height: auto !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+.swiper-wrapper img,
+.swiper-slide img,
+.slide-wrap img {
+    width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    object-fit: contain !important;
+    display: block !important;
+}
+
+/* Swiper navigation buttons */
+.swiper-button-prev,
+.swiper-button-next {
+    color: #3b82f6 !important;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    background: rgba(15, 23, 42, 0.6);
+    width: 44px !important;
+    height: 44px !important;
+    border-radius: 9999px;
+}
+
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+    transform: scale(1.1);
+    background: rgba(15, 23, 42, 0.85);
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+    font-size: 1.25rem !important;
+    font-weight: bold;
+    color: #ffffff !important;
+}
+
+.swiper-pagination-bullet-active {
+    background: #3b82f6 !important;
+    width: 24px !important;
+    border-radius: 9999px !important;
+}

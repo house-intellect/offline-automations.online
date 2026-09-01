@@ -1,14 +1,16 @@
-<div class="mx-auto my-6 max-w-6xl px-4">
-    <div class="swiper-container rounded-xl overflow-hidden shadow-lg">
-        <div class="swiper-wrapper">
-            {{ range .Site.Data.slide }}
-            <div class="swiper-slide">
-                <img src="{{ .image | relURL }}" alt="{{ .alt | default .title }}" class="w-full h-auto object-cover">
+<div class="container mx-auto max-w-7xl my-6">
+    <div class="px-2">
+        <div class="swiper-container rounded-2xl overflow-hidden shadow-xl bg-gray-900">
+            <div class="swiper-wrapper flex items-center">
+                {{ range .Site.Data.slide }}
+                <div class="swiper-slide flex justify-center items-center">
+                    <img src="{{ .image | relURL }}" alt="{{ .alt | default .title }}" class="w-full h-auto object-contain block mx-auto">
+                </div>
+                {{ end }}
             </div>
-            {{ end }}
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-pagination"></div>
         </div>
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-pagination"></div>
     </div>
 </div>
