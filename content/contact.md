@@ -21,6 +21,5 @@ description: "Свяжитесь с нами для организации де�
 
 ### Прямые контакты
 
-* **Электронная почта:** [contact@doksintez.pro](mailto:contact@doksintez.pro?subject=Запрос%20на%20внедрение%20системы%20ДокСинтез)
-* **Технический отдел:** [support@doksintez.pro](mailto:support@doksintez.pro)
+* **Электронная почта:** [sirglepp@gmail.com](mailto:sirglepp@gmail.com?subject=Запрос%20на%20внедрение%20системы%20ДокСинтез)
 * **Формат развертывания:** On-Premise (на мощностях заказчика) / Private Cloud заказчика
