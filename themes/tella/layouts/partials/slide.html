@@ -2,7 +2,7 @@
     <div class="swiper-wrapper">
         {{ range .Site.Data.slide }}
         <div class="swiper-slide">
-            <img src="{{ .image }}" alt="{{ .alt }}">
+            <img src="{{ .image | relURL }}" alt="{{ .alt | default .title }}">
             <div class="s-fade-txt rounded-lg p-4 bg-gray-800-transparent">
                 <h1 class="text-4xl {{ or .color "text-white" }}">{{ .title }}</h1>
             </div>
