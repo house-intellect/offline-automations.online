@@ -1,44 +1,40 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<yml_catalog date="2025-02-04 12:10">
+<yml_catalog date="2026-09-01 12:00">
   <shop>
-    <name>Android Разработчик</name>
-    <company>Самозанятый</company>
-    <url>https://offline-smarthome-scenarios.pro/contact/</url>
-    <email>sirglepp+andoid@yandex.ru</email>
+    <name>ДокСинтез</name>
+    <company>ДокСинтез</company>
+    <url>https://offline-automations.online/contact/</url>
+    <email>contact@doksintez.pro</email>
     <currencies>
       <currency id="RUR" rate="1" />
     </currencies>
     <categories>
-      <category id="1">Исполнитель</category>
-      <category id="2" parentId="1">Разработка ПО</category>
-      <category id="3" parentId="2">Мобильная разработка</category>
-      <category id="4" parentId="3">Android (Kotlin)</category>
+      <category id="1">Автоматизация бизнеса</category>
+      <category id="2" parentId="1">Финансовый контроль</category>
+      <category id="3" parentId="2">Обработка документов</category>
+      <category id="4" parentId="3">Локальные LLM системы</category>
     </categories>
     <sets>
       <set id="s1">
-        <name>Разработка мобильных приложений на Android (Kotlin) в Санкт-Петербурге</name>
-        <url>https://offline-smarthome-scenarios.pro/about/</url>
+        <name>Внедрение локального конвейера финансового контроля и сопоставления УПД/PO ДокСинтез</name>
+        <url>https://offline-automations.online/about/</url>
       </set>
     </sets>
     <offers>
-      <offer id="dev001">
-        <name>Мобильные приложения на заказ</name>
-        <url>https://offline-smarthome-scenarios.pro/contact</url>
-        <price>3000</price>
+      <offer id="doksintez001">
+        <name>Интеграция локальной гибридной системы «ДокСинтез»</name>
+        <url>https://offline-automations.online/contact/</url>
+        <price>150000</price>
         <currencyId>RUR</currencyId>
-        <sales_notes>за час работы</sales_notes>
+        <sales_notes>пилотный проект и интеграция</sales_notes>
         <categoryId>4</categoryId>
         <set-ids>s1</set-ids>
-        <picture>https://offline-smarthome-scenarios.pro/img/android-developer.webp</picture>
-        <description>Профессиональная разработка мобильных приложений на Kotlin для Android. Работа с API, интеграция Firebase, разработка UI/UX.</description>
+        <picture>https://offline-automations.online/img/banner.webp</picture>
+        <description>Автономный интеллектуальный конвейер обработки первичных документов и финансового аудита. Локальная LLM и математический аудит цен без передачи данных в облако.</description>
         <adult>false</adult>
         <expiry>P5Y</expiry>
-        <param name="Конверсия">1.234</param><!--Это произвольное число, оно не обязано быть от 0 до 1-->
-        <param name="Годы опыта">15</param>
-        <param name="Регион">Санкт-Петербург</param>
-        <param name="Основные услуги">Разработка Android-приложений, Интеграция с API, Оптимизация кода, Поддержка существующих проектов</param>
-        <param name="Выезд на дом">нет</param>
-        <param name="Работа по адресу">нет</param>
+        <param name="Регион">РФ / Удаленно</param>
+        <param name="Основные услуги">Аудит документооборота, Развертывание локальных LLM, Настройка семантического маппинга первички, Интеграция с учетными системами</param>
         <param name="Выполняется удаленно">да</param>
         <param name="Доступность по договору">да</param>
         <param name="Оплата">Безналичный расчет</param>
@@ -46,4 +42,3 @@
     </offers>
   </shop>
 </yml_catalog>
-
