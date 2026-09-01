@@ -1,11 +1,14 @@
-<div class="swiper-container">
-    <div class="swiper-wrapper">
-        {{ range .Site.Data.slide }}
-        <div class="swiper-slide">
-            <img src="{{ .image | relURL }}" alt="{{ .alt | default .title }}">
+<div class="mx-auto my-6 max-w-6xl px-4">
+    <div class="swiper-container rounded-xl overflow-hidden shadow-lg">
+        <div class="swiper-wrapper">
+            {{ range .Site.Data.slide }}
+            <div class="swiper-slide">
+                <img src="{{ .image | relURL }}" alt="{{ .alt | default .title }}" class="w-full h-auto object-cover">
+            </div>
+            {{ end }}
         </div>
-        {{ end }}
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-pagination"></div>
     </div>
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div>
 </div>
