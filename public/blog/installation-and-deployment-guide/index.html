@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html  class="bg-tlgray-300"  lang="ru">
+
+<head>
+
+
+<meta charset="utf-8">
+<title>ДокСинтез — Локальная гибридная система автоматизации финансового контроля | Полное руководство по установке и автономному запуску конвейера «ДокСинтез»</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<link rel="apple-touch-icon" sizes="180x180" href='https://offline-automations.online/apple-touch-icon.png'>
+<link rel="icon" type="image/png" sizes="32x32" href='https://offline-automations.online/favicon-32x32.png'>
+<link rel="icon" type="image/png" sizes="16x16" href='https://offline-automations.online/favicon-16x16.png'>
+<link rel="icon" type="image/x-icon" href='https://offline-automations.online/favicon.ico'>
+
+<link rel="manifest" href='https://offline-automations.online/site.webmanifest'>
+
+<link rel="stylesheet" href='https://offline-automations.online/css/fa6.min.css'>
+
+
+
+
+<link rel="stylesheet" href="/css/style.min.00eea44ae21e2153d26cfeb9b81fc2256889b068fb978d386af155493b169d09.css" />
+
+
+<link rel="stylesheet" href='https://offline-automations.online/css/style.min.css' >
+<link rel="stylesheet" href='https://offline-automations.online/css/custom.css'>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
+<meta property="og:title" content="ДокСинтез — Локальная гибридная система автоматизации финансового контроля | Полное руководство по установке и автономному запуску конвейера «ДокСинтез»" />
+
+
+
+
+<meta name="description" content="Пошаговая инструкция по настройке Ollama, импорту GGUF моделей (GLM-OCR, BigBang), виртуального окружения Python и планировщика задач (cron / Task Scheduler) на Windows и Linux.">
+<meta property="og:title" content=" | " />
+<meta property="og:site_name" content="ДокСинтез — Локальная гибридная система автоматизации финансового контроля">
+<meta property="og:description" content="Пошаговая инструкция по настройке Ollama, импорту GGUF моделей (GLM-OCR, BigBang), виртуального окружения Python и планировщика задач (cron / Task Scheduler) на Windows и Linux.">
+<meta property="og:url" content="https://offline-automations.online/blog/installation-and-deployment-guide/">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@tech_chiba">
+
+<link rel="canonical" href="https://offline-automations.online/blog/installation-and-deployment-guide/">
+
+<meta name="twitter:description" content="Пошаговая инструкция по настройке Ollama, импорту GGUF моделей (GLM-OCR, BigBang), виртуального окружения Python и планировщика задач (cron / Task Scheduler) на Windows и Linux.">
+<meta property="article:published_time" content="2026-08-07T12:00:00&#43;03:00">
+<meta property="article:updated_time" content="2026-08-07T12:00:00&#43;03:00">
+
+
+
+
+
+    
+<meta property="og:image" content="https://offline-automations.online/img/blog/installation-guide.webp">
+    
+
+
+<meta name="twitter:title" content="Полное руководство по установке и автономному запуску конвейера «ДокСинтез»">
+<link rel="preload" href='https://offline-automations.online/css/sweetalert2.min.css' as="style"
+    onload="this.onload=null;this.rel='stylesheet'">
+
+</head>
+
+<body class="flex flex-col min-h-screen">
+  <main class="flex-grow"><header>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YMDXXMEB0E"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-YMDXXMEB0E');
+    </script>
+        
+    <script type="text/javascript" >
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();
+   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+   ym(99792312, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true
+   });
+    </script>
+<noscript><div><img src="https://mc.yandex.ru/watch/99792312" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
+    <div id="overlay">
+        <ul class="text-center list-none text-white text-3xl">
+            
+            <li class="p-2">
+                <a href="https://offline-automations.online/products/">
+                    <span>Возможности</span>
+                </a>
+            </li>
+            
+            <li class="p-2">
+                <a href="https://offline-automations.online/blog/">
+                    <span>База знаний</span>
+                </a>
+            </li>
+            
+            <li class="p-2">
+                <a href="https://offline-automations.online/about/">
+                    <span>О системе</span>
+                </a>
+            </li>
+            
+            <li class="p-2">
+                <a href="https://offline-automations.online/contact/">
+                    <span>Внедрение и контакты</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <nav class="flex items-center justify-between flex-wrap bg-opacity-100 p-8">
+        <div class="flex items-center flex-shrink-0 text-xl text-grey-900 mr-6">
+            <a href="https://offline-automations.online/"><img alt="ДокСинтез — Локальная гибридная система автоматизации документооборота и финансового контроля"
+                    class="h-14 mr-3" src="https://offline-automations.online/img/logo/logo.png"></a>
+        </div>
+        <div class="block lg:hidden">
+            <div id="hamburgerbtn" class="flex cursor-pointer items-center w-14 h-10 py-2 rounded mopen">
+                <span class="top"></span>
+                <span class="middle"></span>
+                <span class="bottom"></span>
+            </div>
+        </div>
+        <div class="hidden w-full block flex-grow lg:flex lg:items-center lg:w-auto" id="mobileMenu">
+            <div class="text-lg lg:flex-grow">
+            </div>
+            <div class="text-lg">
+                
+                <a href="https://offline-automations.online/products/"
+                    class="duration-200 block mt-4 lg:inline-block lg:mt-0 text-black hover:opacity-60 mr-8">
+                    Возможности
+                </a>
+                
+                <a href="https://offline-automations.online/blog/"
+                    class="duration-200 block mt-4 lg:inline-block lg:mt-0 text-black hover:opacity-60 mr-8">
+                    База знаний
+                </a>
+                
+                <a href="https://offline-automations.online/about/"
+                    class="duration-200 block mt-4 lg:inline-block lg:mt-0 text-black hover:opacity-60 mr-8">
+                    О системе
+                </a>
+                
+                <a href="https://offline-automations.online/contact/"
+                    class="duration-200 block mt-4 lg:inline-block lg:mt-0 text-black hover:opacity-60 mr-8">
+                    Внедрение и контакты
+                </a>
+                
+            </div>
+        </div>
+    </nav>
+</header>
+<div class="scroll-top rounded-full">
+      <span class="icon-keyboard_arrow_up text-2xl"></span>
+    </div>
+<div class="mx-auto my-10 max-w-6xl">
+    <div class="mx-3 col-span-3 lg:col-span-2 px-2">
+        <h1 class="title text-5xl font-bold mb-3">Полное руководство по установке и автономному запуску конвейера «ДокСинтез»</h1>
+        <section class="mb-4 text-lg">
+            <h4 id="date" class="flex flex-row items-center"><span class="icon-access_time text-2xl mr-2"></span>
+                2026/08/07 </h4>
+            
+            <h4 class="flex flex-row items-center"><span class="icon-person text-2xl mr-2"></span>Инженер по внедрению ДокСинтез
+            </h4>
+            
+            
+            <div id="categories" class="flex flex-row items-center">
+                <span class="icon-folder text-2xl mr-1"></span>
+                
+                <span
+                    class="inline-flex py-1 leading-4 content-center justify-center px-1 text-blue-600 hover:text-blue-800 duration-200"><a
+                        href='https://offline-automations.online/categories/%D1%80%D0%B0%D0%B7%D0%B2%D0%B5%D1%80%D1%82%D1%8B%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5'>Развертывание</a></span>
+                
+                <span
+                    class="inline-flex py-1 leading-4 content-center justify-center px-1 text-blue-600 hover:text-blue-800 duration-200"><a
+                        href='https://offline-automations.online/categories/%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D0%B8'>Инструкции</a></span>
+                
+                <span
+                    class="inline-flex py-1 leading-4 content-center justify-center px-1 text-blue-600 hover:text-blue-800 duration-200"><a
+                        href='https://offline-automations.online/categories/%D0%B0%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F'>Автоматизация</a></span>
+                
+            </div>
+            
+        </section>
+        
+        <img class="my-4" src="https://offline-automations.online/img/blog/installation-guide.webp">
+        
+        <div class="content prose md:prose-lg lg:prose-xl max-w-none py-1"><p>Система <strong>«ДокСинтез»</strong> полностью автономна и не требует подключения к внешним облачным сервисам. В этой статье приведена подробная инструкция по локальному развертыванию конвейера на операционных системах <strong>Linux</strong> и <strong>Windows</strong>, включая установку локального нейросетевого сервера Ollama, импорт специализированных GGUF-моделей с Hugging Face, настройку Python-окружения и запуск ночного регламентного аудита.</p>
+<p><img src="https://offline-automations.online/img/blog/installation-guide.webp" alt="Архитектура локального конвейера и автоматизации"></p>
+<hr>
+<h2 id="1-установка-и-подготовка-локального-сервера-ollama">1. Установка и подготовка локального сервера Ollama</h2>
+<p>Локальный сервер Ollama отвечает за локальное исполнение нейросетевых моделей без выхода в сеть.</p>
+<h3 id="на-linux">На Linux:</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Установка Ollama в одну команду</span>
+</span></span><span style="display:flex;"><span>curl -fsSL https://ollama.com/install.sh | sh
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Проверка статуса сервиса</span>
+</span></span><span style="display:flex;"><span>systemctl status ollama
+</span></span></code></pre></div><h3 id="на-windows">На Windows:</h3>
+<ol>
+<li>Скачайте официальный инсталлятор с сайта <a href="https://ollama.com/download/windows">ollama.com/download/windows</a>.</li>
+<li>Запустите <code>.exe</code> установщик и завершите установку.</li>
+<li>Ollama запустится в фоновом режиме (иконка появится в системном трее) и будет доступна по адресу <code>http://127.0.0.1:11434</code>.</li>
+</ol>
+<hr>
+<h2 id="2-загрузка-моделей-с-hugging-face-и-создание-modelfile">2. Загрузка моделей с Hugging Face и создание Modelfile</h2>
+<p>Для работы конвейера используются две модели:</p>
+<ol>
+<li><strong>GLM-OCR</strong>: Модель высокоточного оптического распознавания текста, штампов и сложных таблиц (<a href="https://huggingface.co/ggml-org/GLM-OCR-GGUF">Hugging Face: ggml-org/GLM-OCR-GGUF</a>).</li>
+<li><strong>BigBang-v1</strong>: Модель семантического анализа, сопоставления номенклатуры и классификации статей (<a href="https://huggingface.co/mradermacher/BigBang-v1-GGUF">Hugging Face: mradermacher/BigBang-v1-GGUF</a>).</li>
+</ol>
+<h3 id="21-загрузка-gguf-файлов">2.1. Загрузка GGUF-файлов</h3>
+<p>Создайте рабочую директорию для моделей и скачайте необходимые квантованные веса:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mkdir -p ~/models <span style="color:#f92672">&amp;&amp;</span> cd ~/models
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Загрузка GLM-OCR GGUF</span>
+</span></span><span style="display:flex;"><span>wget https://huggingface.co/ggml-org/GLM-OCR-GGUF/resolve/main/glm-ocr-q4_k_m.gguf
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Загрузка BigBang-v1 GGUF</span>
+</span></span><span style="display:flex;"><span>wget https://huggingface.co/mradermacher/BigBang-v1-GGUF/resolve/main/BigBang-v1.Q4_K_M.gguf
+</span></span></code></pre></div><h3 id="22-импорт-моделей-в-ollama-через-modelfile">2.2. Импорт моделей в Ollama через Modelfile</h3>
+<p>Создайте файл манифеста <code>Modelfile_bigbang</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> ./BigBang-v1.Q4_K_M.gguf</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>PARAMETER temperature 0.1<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>PARAMETER top_p 0.9<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>PARAMETER num_ctx <span style="color:#ae81ff">8192</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>SYSTEM <span style="color:#e6db74">&#34;&#34;&#34;Вы — строгий финансовый аудитор и эксперт по сопоставлению первичных бухгалтерских документов.&#34;&#34;&#34;</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p>Импортируйте модель в реестр Ollama:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ollama create bigbang:v1 -f Modelfile_bigbang
+</span></span></code></pre></div><p>Аналогично импортируйте модель распознавания:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> ./glm-ocr-q4_k_m.gguf</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>PARAMETER temperature 0.0<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>PARAMETER num_ctx <span style="color:#ae81ff">4096</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ollama create glm-ocr:v1 -f Modelfile_glm_ocr
+</span></span></code></pre></div><p>Проверьте наличие созданных моделей:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ollama list
+</span></span></code></pre></div><hr>
+<h2 id="3-настройка-окружения-python-и-установка-зависимостей">3. Настройка окружения Python и установка зависимостей</h2>
+<p>Конвейер требует Python версии 3.10 или выше.</p>
+<h3 id="linux--macos">Linux / macOS:</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Переход в директорию проекта</span>
+</span></span><span style="display:flex;"><span>cd /home/grapeonwheels/Documents/CBRE
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Создание виртуального окружения</span>
+</span></span><span style="display:flex;"><span>python3 -m venv .venv
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Активация окружения</span>
+</span></span><span style="display:flex;"><span>source .venv/bin/activate
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Обновление pip и установка библиотек</span>
+</span></span><span style="display:flex;"><span>pip install --upgrade pip
+</span></span><span style="display:flex;"><span>pip install pdfplumber openpyxl pandas requests pillow tabulate
+</span></span></code></pre></div><h3 id="windows-powershell">Windows (PowerShell):</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>cd C:\CBRE\DokSintez
+</span></span><span style="display:flex;"><span>python -m venv .venv
+</span></span><span style="display:flex;"><span>.\.venv\Scripts\Activate.ps1
+</span></span><span style="display:flex;"><span>pip install --upgrade pip
+</span></span><span style="display:flex;"><span>pip install pdfplumber openpyxl pandas requests pillow tabulate
+</span></span></code></pre></div><hr>
+<h2 id="4-запуск-скрипта-doksintezpy">4. Запуск скрипта DokSintez.py</h2>
+<p>Скрипт поддерживает как запуск со стандартными параметрами (по умолчанию используются локальный хост Ollama <code>http://127.0.0.1:11434</code> и модель <code>bigbang:v1</code>), так и запуск с кастомными аргументами командной строки:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Базовый запуск в виртуальном окружении:</span>
+</span></span><span style="display:flex;"><span>python3 /home/grapeonwheels/Documents/CBRE/DokSintez.py
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Запуск с указанием конкретной модели и пути к данным:</span>
+</span></span><span style="display:flex;"><span>python3 /home/grapeonwheels/Documents/CBRE/DokSintez.py <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --model <span style="color:#e6db74">&#34;bigbang:v1&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --ollama_url <span style="color:#e6db74">&#34;http://127.0.0.1:11434&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --data_dir <span style="color:#e6db74">&#34;/home/grapeonwheels/Documents/CBRE/june&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --reference <span style="color:#e6db74">&#34;/home/grapeonwheels/Documents/CBRE/Шаблон отчета по подрядчикам.xlsx&#34;</span>
+</span></span></code></pre></div><h3 id="исполняемый-bash-скрипт-для-ручного-запуска-run_doksintezsh">Исполняемый bash-скрипт для ручного запуска (<code>run_doksintez.sh</code>):</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>source /home/grapeonwheels/Documents/CBRE/.venv/bin/activate
+</span></span><span style="display:flex;"><span>python3 /home/grapeonwheels/Documents/CBRE/DokSintez.py
+</span></span><span style="display:flex;"><span>read -n <span style="color:#ae81ff">1</span> -s -r -p <span style="color:#e6db74">&#34;Нажмите любую клавишу для продолжения...&#34;</span>
+</span></span></code></pre></div><hr>
+<h2 id="5-настройка-ночного-автоматического-расписания-nightly-runs">5. Настройка ночного автоматического расписания (Nightly Runs)</h2>
+<p>Для реализации концепции <strong>«Свежий отчет к завтраку»</strong> обработка входящей первички запускается автоматически каждую ночь.</p>
+<h3 id="51-настройка-через-cron-в-linux">5.1. Настройка через <code>cron</code> в Linux</h3>
+<p>Откройте редактор расписания текущего пользователя:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>crontab -e
+</span></span></code></pre></div><p>Добавьте задачу на запуск каждую ночь в 03:00:</p>
+<pre tabindex="0"><code class="language-cron" data-lang="cron"># Запуск конвейера ДокСинтез каждую ночь в 03:00
+0 3 * * * /home/grapeonwheels/Documents/CBRE/.venv/bin/python3 /home/grapeonwheels/Documents/CBRE/DokSintez.py &gt;&gt; /home/grapeonwheels/Documents/CBRE/cron_execution.log 2&gt;&amp;1
+</code></pre><h3 id="52-однократный-отложенный-запуск-через-at-linux">5.2. Однократный отложенный запуск через <code>at</code> (Linux)</h3>
+<p>Если требуется запланировать разовый запуск на ближайшую ночь:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;/home/grapeonwheels/Documents/CBRE/.venv/bin/python3 /home/grapeonwheels/Documents/CBRE/DokSintez.py&#34;</span> | at 03:30 tomorrow
+</span></span></code></pre></div><h3 id="53-настройка-в-windows-через-планировщик-заданий-task-scheduler">5.3. Настройка в Windows через Планировщик заданий (Task Scheduler)</h3>
+<p>Создайте файл <code>nightly_run.bat</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cmd" data-lang="cmd"><span style="display:flex;"><span>@<span style="color:#66d9ef">echo</span> off
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">cd</span> /d C:\CBRE\DokSintez
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">call</span> .venv\Scripts\activate.bat
+</span></span><span style="display:flex;"><span>python DokSintez.py &gt;&gt; execution_nightly.log <span style="color:#ae81ff">2</span>&gt;&amp;<span style="color:#ae81ff">1</span>
+</span></span></code></pre></div><ol>
+<li>Нажмите <code>Win + R</code>, введите <code>taskschd.msc</code> и нажмите Enter.</li>
+<li>В правом меню выберите <strong>Создать простую задачу&hellip;</strong> (Create Basic Task).</li>
+<li>Укажите имя: <code>ДокСинтез - Ночной аудит первички</code>.</li>
+<li>Триггер: <strong>Ежедневно</strong>, время: <code>03:00:00</code>.</li>
+<li>Действие: <strong>Запустить программу</strong> -&gt; укажите путь к <code>C:\CBRE\DokSintez\nightly_run.bat</code>.</li>
+<li>Готово! Теперь каждое утро к началу рабочего дня руководство и бухгалтерия получают готовый свежий отчет в формате Excel.</li>
+</ol>
+</div>
+        <div class="share m-2 grid grid-cols-2 lg:grid-cols-3 gap-2">
+            <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2foffline-automations.online%2fblog%2finstallation-and-deployment-guide%2f&text=%d0%9f%d0%be%d0%bb%d0%bd%d0%be%d0%b5%20%d1%80%d1%83%d0%ba%d0%be%d0%b2%d0%be%d0%b4%d1%81%d1%82%d0%b2%d0%be%20%d0%bf%d0%be%20%d1%83%d1%81%d1%82%d0%b0%d0%bd%d0%be%d0%b2%d0%ba%d0%b5%20%d0%b8%20%d0%b0%d0%b2%d1%82%d0%be%d0%bd%d0%be%d0%bc%d0%bd%d0%be%d0%bc%d1%83%20%d0%b7%d0%b0%d0%bf%d1%83%d1%81%d0%ba%d1%83%20%d0%ba%d0%be%d0%bd%d0%b2%d0%b5%d0%b9%d0%b5%d1%80%d0%b0%20%c2%ab%d0%94%d0%be%d0%ba%d0%a1%d0%b8%d0%bd%d1%82%d0%b5%d0%b7%c2%bb" target="_blank"
+                title="Post" class="share-button x">
+                <div class="text-white text-center">
+                    <span class="icon-x text-lg mr-2"></span>X
+                </div>
+            </a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2foffline-automations.online%2fblog%2finstallation-and-deployment-guide%2f&t=%d0%9f%d0%be%d0%bb%d0%bd%d0%be%d0%b5%20%d1%80%d1%83%d0%ba%d0%be%d0%b2%d0%be%d0%b4%d1%81%d1%82%d0%b2%d0%be%20%d0%bf%d0%be%20%d1%83%d1%81%d1%82%d0%b0%d0%bd%d0%be%d0%b2%d0%ba%d0%b5%20%d0%b8%20%d0%b0%d0%b2%d1%82%d0%be%d0%bd%d0%be%d0%bc%d0%bd%d0%be%d0%bc%d1%83%20%d0%b7%d0%b0%d0%bf%d1%83%d1%81%d0%ba%d1%83%20%d0%ba%d0%be%d0%bd%d0%b2%d0%b5%d0%b9%d0%b5%d1%80%d0%b0%20%c2%ab%d0%94%d0%be%d0%ba%d0%a1%d0%b8%d0%bd%d1%82%d0%b5%d0%b7%c2%bb" target="_blank"
+                title="Facebook" class="share-button facebook">
+                <div class="text-white text-center">
+                    <span class="icon-facebook text-lg mr-2"></span>Facebook
+                </div>
+            </a>
+            
+            
+            
+            <a href="javascript:OnClickURL();" class="share-button url" title="Копировать ссылку в буфер обмена"
+                data-clipboard-text="Полное руководство по установке и автономному запуску конвейера «ДокСинтез» https://offline-automations.online/blog/installation-and-deployment-guide/" id="url">
+                <div class="text-white text-center">
+                    <span class="icon-link text-lg mr-2"></span>Копировать
+                </div>
+            </a>
+        </div>
+        <hr class="py-4">
+        <aside id="meta">
+            <div class="grid grid-cols-2">
+                <div class="col-span-1">
+                    
+                    <a class="previous lg:text-2xl" href="https://offline-automations.online/blog/local-llm-architecture-for-enterprise/">
+                        <div
+                            class="transition-colors duration-300 border border-gray-600 hover:border-black h-auto m-3 text-center py-3 lg:py-1">
+                            <span class="icon-keyboard_arrow_left"></span> Локальные…
+                        </div>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </aside>
+    </div>
+</div>
+
+  </main><footer class="bg-tlgray-100">
+  
+  <script src='https://offline-automations.online/js/clipboard.min.js'></script>
+  <script src='https://offline-automations.online/js/highlight.min.js'></script>
+  <script src='https://offline-automations.online/js/highlightjs-line-numbers.min.js'></script>
+  <script src='https://offline-automations.online/js/sweetalert2.min.js'></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+    new ClipboardJS('.url');
+
+    function OnClickURL() {
+      Swal.fire({
+        icon: 'success',
+        title: 'Copied!',
+        text: 'Copied the URL and title.'
+      })
+    }
+  </script>
+  
+  <script>
+    function toggleNav() {
+      var hamburger = document.getElementById("hamburgerbtn");
+      var overlay = document.getElementById("overlay");
+      var body = document.body;
+
+      hamburger.addEventListener("click", function () {
+        overlay.classList.toggle("open");
+        hamburger.classList.toggle("is-open");
+        body.classList.toggle("scroll-lock");
+      });
+    }
+    toggleNav();
+
+    document.querySelector('.scroll-top').addEventListener('click', () => {
+      document.documentElement.scrollTop = 0;
+    });
+  </script>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans&display=swap" rel="stylesheet" />
+  
+  <div class="flex items-center justify-between flex-wrap bg-gray-800 p-8 text-white">
+    
+    <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto" id="mobileMenu">
+      
+      <div class="flex flex-row items-center text-lg">
+        
+        <a href="https://offline-automations.online/" class="block mt-4 lg:inline-block lg:mt-0 text-gray-300 hover:text-white mr-8">
+          
+          Главная
+          
+        </a>
+        
+        <a href="https://offline-automations.online/products/" class="block mt-4 lg:inline-block lg:mt-0 text-gray-300 hover:text-white mr-8">
+          
+          Возможности
+          
+        </a>
+        
+        <a href="https://offline-automations.online/about/" class="block mt-4 lg:inline-block lg:mt-0 text-gray-300 hover:text-white mr-8">
+          
+          О системе
+          
+        </a>
+        
+        <a href="https://offline-automations.online/contact/" class="block mt-4 lg:inline-block lg:mt-0 text-gray-300 hover:text-white mr-8">
+          
+          Контакты
+          
+        </a>
+        
+      </div>
+    </div>
+  </div>
+  <div class="copy pl-8 py-5 bg-tlgray-700 text-white text-md">
+    &copy; ДокСинтез 2026 Все права защищены.
+     <a href="https://www.liveinternet.ru/click"
+target="_blank"><img id="licnt59C4" width="31" height="31" style="border:0; display:none" 
+title="LiveInternet"
+src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAEALAAAAAABAAEAAAIBTAA7"
+alt=""/></a><script>(function(d,s){d.getElementById("licnt59C4").src=
+"https://counter.yadro.ru/hit?t38.6;r"+escape(d.referrer)+
+((typeof(s)=="undefined")?"":";s"+s.width+"*"+s.height+"*"+
+(s.colorDepth?s.colorDepth:s.pixelDepth))+";u"+escape(d.URL)+
+";h"+escape(d.title.substring(0,150))+";"+Math.random()})
+(document,screen)</script>
+  </div>
+ 
+</footer>
+</body>
+
+</html>

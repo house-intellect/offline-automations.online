@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="https://www.w3.org/2005/Atom" xmlns:turbo="https://turbo.yandex.ru">
+  <channel>
+    <title>Инструкции on ДокСинтез — Локальная гибридная система автоматизации финансового контроля</title>
+    <link>https://offline-automations.online/categories/%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D0%B8/</link>
+    <description>Recent content in Инструкции on ДокСинтез — Локальная гибридная система автоматизации финансового контроля</description>
+    <generator>Hugo</generator>
+    <language>ru</language>
+    <lastBuildDate>Fri, 07 Aug 2026 12:00:00 +0300</lastBuildDate>
+    <atom:link href="https://offline-automations.online/categories/%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D0%B8/index.xml" rel="self" type="application/rss+xml" />
+    <item turbo="true">
+      <title>Полное руководство по установке и автономному запуску конвейера «ДокСинтез»</title>
+      <link>https://offline-automations.online/blog/installation-and-deployment-guide/</link>
+      <pubDate>Fri, 07 Aug 2026 12:00:00 +0300</pubDate>
+      <guid>https://offline-automations.online/blog/installation-and-deployment-guide/</guid>
+      <description>Система «ДокСинтез» полностью автономна и не требует подключения к внешним облачным сервисам. В этой статье приведена подробная инструкция по локальному развертыванию конвейера на операционных системах Linux и Windows, включая установку локального нейросетевого сервера Ollama, импорт специализированных GGUF-моделей с Hugging Face, настройку Python-окружения и запуск ночного регламентного аудита.&#xA;1. Установка и подготовка локального сервера Ollama Локальный сервер Ollama отвечает за локальное исполнение нейросетевых моделей без выхода в сеть.&#xA;На Linux: # Установка Ollama в одну команду curl -fsSL https://ollama.</description>
+      <turbo:content>Система «ДокСинтез» полностью автономна и не требует подключения к внешним облачным сервисам. В этой статье приведена подробная инструкция по локальному развертыванию конвейера на операционных системах Linux и Windows, включая установку локального нейросетевого сервера Ollama, импорт специализированных GGUF-моделей с Hugging Face, настройку Python-окружения и запуск ночного регламентного аудита.&#xA;1. Установка и подготовка локального сервера Ollama Локальный сервер Ollama отвечает за локальное исполнение нейросетевых моделей без выхода в сеть.&#xA;На Linux: # Установка Ollama в одну команду curl -fsSL https://ollama.</turbo:content>
+    </item>
+  </channel>
+</rss>
