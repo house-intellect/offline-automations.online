@@ -15,7 +15,7 @@ description: "Свяжитесь с нами для организации де�
 
 ---
 
-{{< form >}}
+{{< contact_form id="contact-form" placeholder_name="Ваше имя" placeholder_email="Корпоративный e-mail" placeholder_message="Расскажите о вашей задаче или масштабе документооборота" button_label="Отправить заявку на внедрение ✉️" >}}
 
 ---
 
