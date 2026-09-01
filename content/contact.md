@@ -23,3 +23,17 @@ description: "Свяжитесь с нами для организации де�
 
 * **Электронная почта:** [sirglepp@gmail.com](mailto:sirglepp@gmail.com?subject=Запрос%20на%20внедрение%20системы%20ДокСинтез)
 * **Формат развертывания:** On-Premise (на мощностях заказчика) / Private Cloud заказчика
+
+---
+
+### Профессиональная квалификация и сертификаты
+
+Сертификаты специалистов в области применяемых при разработке и интеграции информационных технологий:
+
+![Transcript](/img/certs/transcript.webp)
+
+**Microsoft Certification ID:** 8131268
+
+[Microsoft Learning Transcript](https://learn.microsoft.com/en-us/users/glebsyrovatskiy-0660/transcript/vjzmminmk15qpm0?source=docs&tab=credentials-tab)
+
+{{< fullscreen >}}
