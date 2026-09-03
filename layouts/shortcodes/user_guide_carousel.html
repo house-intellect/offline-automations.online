@@ -1,0 +1,42 @@
+<div class="w-full my-0 p-0 overflow-hidden select-none">
+    <div class="swiper-container w-full bg-gray-900 shadow-2xl relative">
+        <div class="swiper-wrapper flex items-center">
+            {{ range .Site.Data.user_guide_slides }}
+            <div class="swiper-slide flex justify-center items-center">
+                <img src="{{ .image | relURL }}" alt="{{ .alt | default .title }}" class="w-full h-auto object-contain block mx-auto">
+            </div>
+            {{ end }}
+        </div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-pagination"></div>
+    </div>
+</div>
+
+<script src="{{ "/js/swiper-bundle.min.js" | relURL }}"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var userGuideSwiper = new Swiper(".swiper-container", {
+            direction: "horizontal",
+            loop: true,
+            speed: 600,
+            autoHeight: true,
+            keyboard: {
+                enabled: true,
+                onlyInViewport: false,
+            },
+            autoplay: {
+                delay: 10000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+    });
+</script>
